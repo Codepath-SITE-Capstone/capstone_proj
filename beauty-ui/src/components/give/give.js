@@ -88,7 +88,7 @@ const AntSwitch = withStyles((theme) => ({
 
 
 
-export default function Give({ user, setUser, setDonateNumber, setDonations, setRecycleNumber, setRecycles, initialized}){
+export default function Give({ user, setUser, setDonateNumber, setDonations, setRecycleNumber, setRecycles, initialized, setFreeProducts}){
 
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)
@@ -140,7 +140,7 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
     const handleOnSubmit = async () => {
       setIsProcessing(true)
       setErrors((e) => ({ ...e, form: null }))
-
+      
       const{ data, error } = await apiClient.createGiving({
             product_type: form.product_type,
             quantity: form.quantity,
@@ -148,7 +148,7 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
             zip_code: form.zip_code,
             product_pic: form.product_pic
       })
-     
+      setFreeProducts(data.givings.quantity)
       if(error) setErrors( setErrors((e) => ({ ...e, form: error })))
       
       
