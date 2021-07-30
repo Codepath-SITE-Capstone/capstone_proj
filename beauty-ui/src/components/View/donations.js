@@ -21,11 +21,18 @@ const useStyles = makeStyles((theme) => ({
      justifyContent:'space-between',
     },
 
+    viewDonatedTitle:{
+        padding:"0",
+    },
+
     Button:{
         justifyContent:'flex-end',
     },
+    giveButton:{
+    
+    },
     feed: {
-     justifyContent:"space-between",
+     justifyContent:"flex-start",
      alignContent:"space-evenly",
      gridRowGap:'4rem' ,
      gridColumnGap: '2rem',
@@ -59,10 +66,17 @@ export default function UserDonations({ donations, donateNumber }){
                 <Grid container className="usersDonations">
                    
                     <Grid container className={classes.title} >
-                        <h2>Total Donated Products: {donateNumber}</h2>
-                        <Button className={classes.Button} onClick={handleOnClick} variant="outlined" size="small">
-                            View Recycled
-                        </Button>
+                        <h2 className={classes.viewDonatedTitle}>Total Donated Products: {donateNumber}</h2>
+                        
+                            {/* <Button className={classes.giveButton} variant="outlined" size="small">
+                                    <a href="/give">Give </a>
+                            </Button>
+                         */}
+                            <Button  className={classes.Button} onClick={handleOnClick} variant="outlined" size="small">
+                                View Recycled
+                            </Button>
+                        
+                  
                         
                     </Grid>
                     

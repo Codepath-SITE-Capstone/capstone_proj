@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent:'flex-end',
     },
     feed: {
-     justifyContent:"space-between",
+     justifyContent:"flex-start",
      alignContent:"space-evenly",
      gridRowGap:'4rem' ,
      gridColumnGap: '2rem',

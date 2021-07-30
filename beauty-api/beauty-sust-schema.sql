@@ -21,17 +21,17 @@ CREATE TABLE give (
   product_type       TEXT NOT NULL,
   quantity   INTEGER NOT NULL,
   is_used    BOOLEAN NOT NULL DEFAULT FALSE,
-  zip_code   INTEGER NOT NULL,
+  -- zip_code   INTEGER NOT NULL,
   product_pic TEXT,
   created_at  TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 --Obehi: Represent the example products we obtain as a recycle or a donation. On Home page it is split into two 
 --categories
-CREATE TABLE products (
-  id            SERIAL PRIMARY KEY,
-  category      TEXT NOT NULL DEFAULT 'misc',
-  name          TEXT NOT NULL,
-  image         TEXT NOT NULL,
-  description   TEXT NOT NULL
-);
+-- CREATE TABLE products (
+--   id            SERIAL PRIMARY KEY,
+--   category      TEXT NOT NULL DEFAULT 'misc',
+--   name          TEXT NOT NULL,
+--   image         TEXT NOT NULL,
+--   description   TEXT NOT NULL
+-- );
