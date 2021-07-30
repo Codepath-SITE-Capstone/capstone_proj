@@ -1,7 +1,7 @@
 const db = require("../db")
 const {BadRequestError} = require("../utils/errors")
 
-class newp{
+class Newp{
     static async updateInfo({ user, settings }){
         if(!user){
             throw new BadRequestError("No authentication recognized")
@@ -21,6 +21,11 @@ class newp{
         return profile
     }
 
+    //i need to hash the password. 
+    //import bcrypt 
+
+    //look at user.js 
+
 }
 
-module.exports = newp
+module.exports = Newp
