@@ -1,13 +1,13 @@
 import "./Points.css"
 import { Box, Button, withStyles } from "@material-ui/core"
-import { black } from "colors"
+//import { black } from "colors"
 
 
 export default function Points({donateNumber, recycleNumber}) {
     const StyledButton = withStyles({
         root:{
             borderRadius:1,
-            borderColor:black,
+            borderColor:'black',
         },
     })(Button);
 
