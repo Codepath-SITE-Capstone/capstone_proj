@@ -8,22 +8,24 @@ import { Link } from "react-router-dom"
 import { black } from "colors"
 import UploadButtons from "./Upload"
 import { useEffect } from "react"
+import apiClient from "../../services/apiClient"
 
 export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, freeProducts, setFreeProducts}) {
+ 
+    console.log(recycleNumber)
+
     useEffect(() => {
         
         const ProfileApp = async () => {
-            setRecycleNumber(recycleNumber)
-           setDonateNumber(donateNumber)
+            const { data } = await apiClient.fetchNumberDonationsRecycled()
+            if (data)  {
+            setRecycleNumber(data.recycleNumber)
+           setDonateNumber(data.donationNumber)
            }
-             
-
-        
+        }
       ProfileApp()
         }, [])
     
-    setDonateNumber(donateNumber)
-    setRecycleNumber(recycleNumber)
     console.log(user.profile_pic)
     const navigate = useNavigate()
     
@@ -68,7 +70,7 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                         {!user.profile_pic?(<>
                             <StyledButton className="btn" variant="outlined" onClick={handleOnClick}>Settings</StyledButton>
                             <br/><br/>
-                            <UploadButtons />
+                            <SimpleModal />
                             <br/><br/>
                             <StyledButton className="btn" variant="outlined" onClick={handleOnLogout}>Log Out</StyledButton></>
                         ) :(<><StyledButton className="btn" variant="outlined" onClick={handleOnClick}>Settings</StyledButton>

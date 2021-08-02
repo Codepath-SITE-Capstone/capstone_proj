@@ -93,17 +93,13 @@ const App = ()=> {
         
         const ProfileApp = async () => {
             const { data } = await apiClient.fetchNumberDonationsRecycled()
-
             if (data)  {
             setRecycleNumber(data.recycleNumber)
-           
            setDonateNumber(data.donationNumber)
            }
-             
-
         }
       ProfileApp()
-        }, [setDonateNumber, setRecycleNumber])
+        }, [])
 
       
 

@@ -9,7 +9,7 @@ export default function Points({donateNumber, recycleNumber, setDonateNumber, se
     const StyledButton = withStyles({
         root:{
             borderRadius:1,
-            border: '1px solid black',
+            borderColor:'black',
         },
     })(Button);
     const handlePoints = () =>{

@@ -62,7 +62,7 @@ export default function CustomizedMenus({logoutUser}) {
         aria-haspopup="true"
         variant="contained"
         fontSize="large"
-        color="black"
+        // color="black"
         onClick={handleClick}
       >
       </PersonOutlineOutlinedIcon>

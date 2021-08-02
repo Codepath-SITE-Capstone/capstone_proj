@@ -60,7 +60,7 @@ app.use((err, req, res, next) => {
 
 //Obehi: Backend Port 3001
 app.listen(PORT, ()=> {
-  console.log(`🚀 Server listening on http://localhost:${PORT}`)
+  console.log(`🚀 Server listening on http://localhost:3001`)
 })
 
 

@@ -14,6 +14,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import apiClient from "../../services/apiClient";
+import  IconButton  from "@material-ui/core/IconButton";
+import RemoveIcon from '@material-ui/icons/Remove';
+import AddIcon from '@material-ui/icons/Add';
+import { InputLabel, Select, MenuItem, ListSubheader } from "@material-ui/core";
 
 // import { WithStyles } from "@material-ui/core";
 
@@ -33,20 +37,45 @@ const useStyles = makeStyles((theme) => ({
     height:'25rem',
   },
   paper: {
-    margin: theme.spacing(1, 4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     height:'25rem',
   },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
-    margin: theme.spacing(0, "auto"),
-    height:'25rem',
+
+  formInputs: {
+    '& .MuiTextField-root':{
+      marginRight: theme.spacing(3),
+      // minWidth:100,
+     
+    },
+    display:'flex',
+    // marginTop: theme.spacing(1),
+    // height:'25rem',
   },
-  submit: {
+
+  productType: {
+     
+    '& .MuiFormControl-root':{
+      marginRight: theme.spacing(3),
+    },
+    margin: theme.spacing(1),
+    minWidth: 180,
+    marginTop: theme.spacing(2),
+  },
+
+formControl: {
+     
+    '& .MuiFormControl-root':{
+      marginRight: theme.spacing(3),
+    },
+    marginTop: theme.spacing(2),
+    minWidth: 80,
+  },
+
+submit: {
     margin: theme.spacing(3, 0, 2),
+    width:'8rem',
   },
 }));
 
@@ -95,15 +124,15 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
     const [errors, setErrors] = useState({})
    // const [createdAt, setCreatedAt] = useState("")
     const [toggle, setToggle]=useState(false)
+    const [used, setUsed] = useState(false)
+    const [product, setProduct] = useState({})
     
 
-    const [form, setForm] = useState({
-        product_type:"",
-        quantity:"",
-        is_used:toggle,
-        zip_code:"",
-        product_pic:"",
-    })
+    const [form, setForm] = useState([
+       { product_type:"", quantity:"", is_used:""},
+        //prouct_pic isnt included we have default image of product_pic depending on what the product_type is
+        //product_pic:"",
+    ])
 
     useEffect(() => {
       // if user is already logged in,
@@ -130,55 +159,99 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
       }
 
     //Obehi: handles change of Toggle button
-     const handleChange = (event) => {
-      setForm((f) => ({ ...f, [event.target.name]: event.target.checked }))
-    };
+    //  const handleChange = (event) => {
+    //   setForm((f) => ({ ...f, [event.target.name]: event.target.checked }))
+    // };
 
+    const handleChange = (index,event) => {
+      // setUsed(event.target.value);
+      console.log(index, event.target.name)
+      //setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
+
+      const values = [...form];
+      values[index][event.target.name]=event.target.value
+      setForm(values);
+    };
+  
+    const handleSelect = (event) => {
+      setProduct(event.target.value);
+    };
    
-   
+    const product_pic_default = {
+      "Serum":'https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2VydW18ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      "Moisturizer/Sun": 'https://images.unsplash.com/photo-1609097164673-7cfafb51b926?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bW9pc3R1cml6ZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      "Cleanser":'https://images.unsplash.com/photo-1556228720-195a672e8a03?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y2xlYW5zZXJzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      "Powder": 'https://images.unsplash.com/photo-1503236823255-94609f598e71?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZXllc2hhZG93fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+      "Mascara":'https://images.unsplash.com/photo-1560725613-4b52e67fc67b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
+      "Liquid Foundations": 'https://images.unsplash.com/photo-1607602132700-068258431c6c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=282&q=80',
+      "Perfume": 'https://images.unsplash.com/photo-1622618991746-fe6004db3a47?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fHBlcmZ1bWV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+    }
+
+    const handleAddFields = () =>{
+      setForm([...form, {product_type: "", quantity: "", is_used: ""}])
+    }
+    const handleRemoveFields = (index) =>{
+      const values = [...form];
+      values.splice(index, 1);
+      setForm(values);
+    }
    
     const handleOnSubmit = async () => {
       setIsProcessing(true)
       setErrors((e) => ({ ...e, form: null }))
-      
-      const{ data, error } = await apiClient.createGiving({
-            product_type: form.product_type,
-            quantity: form.quantity,
-            is_used: form.is_used,
-            zip_code: form.zip_code,
-            product_pic: form.product_pic
-      })
-      setFreeProducts(data.givings.quantity)
-      if(error) setErrors( setErrors((e) => ({ ...e, form: error })))
-      
-      
-      if(data.givings.is_used=== false){
-       // console.log(data)
 
-        setDonations(donations=>[...donations, data.givings])
-        setDonateNumber(d=>{
+      console.log("Form", form)
+
+
+      form.forEach(async (x) =>{
+        const{ data, error } = await apiClient.createGiving({
+
+          product_type: x.product_type,
+          quantity: x.quantity,
+          is_used: x.is_used,
+          product_pic: product_pic_default[x.product_type]
         
-          // console.log(d)
-          // console.log(data)
-          // console.log(form.quantity)
-        return  d + data.givings.quantity})
-        
-      }
+        })
+        if(error) setErrors( setErrors((e) => ({ ...e, form: error })))
 
-      console.log(data.givings.is_used)
-      if(data.givings.is_used ===true){
+        if(data.givings.is_used=== false){
+          // console.log(data)
+   
+           setDonations(donations=>[...donations, data.givings])
+           setDonateNumber(d=>{
+           
+             // console.log(d)
+             // console.log(data)
+             // console.log(form.quantity)
+           return  d + data.givings.quantity})
+           
+         }
+         
+
+         console.log(data.givings.is_used)
+         
+         if(data.givings.is_used ===true){
+         
+           setRecycles(recycles=>[...recycles, data.givings])
+           setRecycleNumber(r=>{
+             // console.log(d)
+             // console.log(data)
+             // console.log(form.quantity)
+           return  r + data.givings.quantity})
+   
+         }
+
+
+
+      }
       
-        setRecycles(recycles=>[...recycles, data.givings])
-        setRecycleNumber(r=>{
-          // console.log(d)
-          // console.log(data)
-          // console.log(form.quantity)
-        return  r + data.givings.quantity})
 
-      }
+      )
+
+      
       setIsProcessing(false)
 
-    navigate("/give/giveSuccess")
+      navigate("/give/giveSuccess")
     
     }
     
@@ -189,9 +262,11 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
     return(
       <div className="Give">
         <Container maxWidth="lg" style={{ backgroundColor: '#ffffff',height: '100vh' }} justify-content="center">
+           
            <div className="giveTitle">
                  <h2>GIVE</h2>
            </div>
+           
            <div className="giveDescription">
                 <p>
                     Empty, gently used, or never opened,  Hīrā will find the mose sustainable and eco-friendly way 
@@ -201,106 +276,117 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
             
             <Grid container  spacing={1} className="feedArea">
       
-              <Grid item xs={3} sm={3} md={4} className={classes.image}>
-                {/* <img className="givePicture"  src = "https://images.unsplash.com/photo-1596704017254-9b121068fb31?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bWFrZXVwfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Makeup"></img> */}
+              <Grid item xs={5} sm={5} md={5} className={classes.image}/>
 
-              </Grid>
+{/* Product Type Input */}
+              <Grid item xs={6} sm={6} md={6} className="giveForm" component={Paper} elevation={0}>
+                <div className={classes.paper}>
+                  <form  noValidate>
+                    { form.map((userInput, index) => (
+                       <div key={index} className={classes.formInputs}>
+                         
+                       
 
-              <Grid item xs={3} sm={3} md={4} className="giveForm" component={Paper} elevation={0}>
-              <div className={classes.paper}>
-          {/* <Typography component="h3" variant="h3" fontFamily="Arima Madurai">
-            Give
-          </Typography> */}
-          
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="productType"
-              label="Product Type"
-              name="product_type"
-              autoComplete="product_type"
-              autoFocus
-              value={form.product_type}
-              onChange={handleOnInputChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="quantity"
-              label="Quantity"
-              type="quantity"
-              id="quantity"
-              autoComplete="current-quantity"
-              value={form.quantity}
-              onChange={handleOnInputChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="product_pic"
-              label="Product Image"
-              type="productImg"
-              id="productImg"
-              autoComplete="product-image"
-              value={form.product_pic}
-              onChange={handleOnInputChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="zip_code"
-              label="Zip Code"
-              type="zipCode"
-              id="zipCode"
-              autoComplete="zip-code"
-              value={form.zip_code}
-              onChange={handleOnInputChange}
-            />
-
-            <FormControl>
-              
-                <Grid container component="label"  alignItems="center" spacing={1}>
-                  <Grid item>No</Grid>
-                  <Grid item>
-                    <FormControlLabel
-                    control={<AntSwitch  onChange={handleChange} name="is_used" onClick={toggler} value={form.is_used}/> }
-                    
-                    label="Used"
-                    labelPlacement="top"
-                    /> 
-                    {/* {toggle ? <span>True</span> : <span>False</span>} */}
-                  </Grid>
-                  <Grid item >Yes</Grid>
-                </Grid>
-            </FormControl>    
+                    <FormControl className={classes.productType} variant="outlined">
+                    <InputLabel htmlFor="demo-simple-select-outlined-label">Product</InputLabel>
+                    <Select defaultValue="" 
+                      labelId="demo-simple-select-outlined-label" 
+                      label="product"
+                      id="grouped-select-outlined" 
+                      value={form.product_type} 
+                      name="product_type" 
+                      onChange={event=> handleChange(index, event)}
+                      >
+                      <ListSubheader>SkinCare</ListSubheader>
+                        <MenuItem value={"Serum"}>Serums</MenuItem>
+                        <MenuItem value={"Moisturizer/Sun"}>Moisturizers/Sun</MenuItem>
+                        <MenuItem value={"Cleanser"}>Cleanser</MenuItem>
+                      <ListSubheader>MakeUp</ListSubheader>
+                        <MenuItem value={"Powder"}>Powders</MenuItem>
+                        <MenuItem value={"Mascara"}>Mascaras</MenuItem>
+                        <MenuItem value={"Liquid Foundations"}>Liquid Foundations</MenuItem>
+                        <MenuItem value={"Perfume"}>Perfumes</MenuItem>
+                    </Select>
+                  </FormControl>
       
-            <Button
-              type="submit"
-             fullWidth
-            
-              variant="contained"
-              // color="#ffffff"
-              className={classes.submit}
-              disabled={isProcessing} 
-              onClick={handleOnSubmit}
-              
-            >
-              {isProcessing ? "Loading..." : "Submit"}
-              {/* Submit */}
-            </Button>
-            <Grid container>
-            </Grid>
-  
-          </form>
+      
+      
+
+
+{/* Quantity Input */}
+                  <TextField
+                    className="inputSection"
+                      variant="outlined"
+                      margin="normal"
+                      required
+                      fullWidth
+                      name="quantity"
+                      label="Quantity (min:1)"
+                      type="number"
+                      min="1"
+                      max="100000000"
+                      InputProps={{ inputProps: { min: 1, max: 100000000 } }}
+                      
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      
+                      id="quantity"
+                      autoComplete="current-quantity"
+                      value={form.quantity}
+                      onChange={event=> handleChange(index, event)}
+                  />
+
+
+  {/* Used Input Section */}
+                  <FormControl variant="outlined" className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-outlined-label">Used?</InputLabel>
+                            <Select
+                              labelId="demo-simple-select-outlined-label"
+                              id="demo-simple-select-outlined"
+                              name="is_used"
+                              value={form.is_used}
+                              onChange={event=> handleChange(index, event)}
+                              label="Used?"
+                            >
+                              <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+                              <MenuItem value={"false"}>No</MenuItem>
+                              <MenuItem value={"true"}>Yes</MenuItem>
+                            </Select>
+                    </FormControl>
+                    
+
+                    
+                    <IconButton onClick={() => handleRemoveFields()}>
+                      <RemoveIcon /> 
+                    </IconButton>
+
+                    <IconButton onClick={() => handleAddFields()}>
+                      <AddIcon  />
+                    </IconButton>
+
+                    </div>
+
+                    ))}
+
+
+                  </form>
+                  
+                   
+                  <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        className={classes.submit}
+                        disabled={isProcessing} 
+                        onClick={handleOnSubmit} >
+                       
+                        {isProcessing ? "Loading..." : "Submit"}
+                        
+                  </Button>
+
         </div>
 
 
