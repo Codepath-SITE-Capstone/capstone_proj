@@ -3,9 +3,8 @@ import { Box, Button, withStyles, Grid } from "@material-ui/core"
 import { black } from "colors"
 import { PieChart } from 'react-minimal-pie-chart'
 
-export default function Points({donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, freeProducts, setFreeProducts}) {
-    setDonateNumber(donateNumber)
-    setRecycleNumber(recycleNumber)
+export default function Points({donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, points, setPoints}) {
+   console.log(points)
     const StyledButton = withStyles({
         root:{
             borderRadius:1,
@@ -14,7 +13,7 @@ export default function Points({donateNumber, recycleNumber, setDonateNumber, se
     })(Button);
     const handlePoints = () =>{
         //change state to be null
-        setFreeProducts(0)
+        setPoints(0)
     }
 
     return (
@@ -36,11 +35,11 @@ export default function Points({donateNumber, recycleNumber, setDonateNumber, se
             <Grid container spacing={2} justifyContent="center">
             <Grid item xs sm={3} className="graph">
              <Box border={1} borderColor="#2EC4B6">  <h2>Your Total Products:</h2> 
-             <h2>{donateNumber + recycleNumber}</h2></Box>
+             <h2>{points[0]}</h2></Box>
             </Grid>
             <Grid item xs sm={3} className="free">
             <Box border={1} borderColor="#2EC4B6">   <h2>Free Products: </h2>
-            <h2>{Math.round(freeProducts/20)}</h2> </Box>
+            <h2>{Math.round(points/20)}</h2> </Box>
             </Grid>
             </Grid>
             <Grid item xs={6} >

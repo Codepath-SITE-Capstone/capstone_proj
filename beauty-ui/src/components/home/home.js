@@ -228,8 +228,29 @@ productSubtitle: {
 
 
 }));
+const reload= ()=>
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+}
 
 export default function Home(props) {
+   //reload()
+   window.onload = function() {
+    if(!window.location.hash) {
+        window.location = window.location + '#loaded';
+        window.location.reload();
+    }
+}
+window.onload()
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles(); //classes invokes useStyles hook
   const { hero } = props;

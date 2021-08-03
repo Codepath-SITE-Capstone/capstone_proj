@@ -11,8 +11,6 @@ import { useEffect } from "react"
 import apiClient from "../../services/apiClient"
 
 export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, points, setPoints}) {
- 
-    console.log(recycleNumber)
 
     useEffect(() => {
         
@@ -25,10 +23,8 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
         }
       ProfileApp()
         }, [])
-    
-    console.log(user.profile_pic)
+
     const navigate = useNavigate()
-    
    
     const StyledButton = withStyles({
             root:{
