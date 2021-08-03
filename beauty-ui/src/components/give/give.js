@@ -117,7 +117,7 @@ const AntSwitch = withStyles((theme) => ({
 
 
 
-export default function Give({ user, setUser, setDonateNumber, setDonations, setRecycleNumber, setRecycles, initialized}){
+export default function Give({ user, setUser, setDonateNumber, setDonations, setRecycleNumber, setRecycles, initialized, setFreeProducts}){
 
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)

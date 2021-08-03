@@ -3,6 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Box } from '@material-ui/core';
 import apiClient from '../../services/apiClient';
+import UploadButtons from './Upload';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiTextField-root': {
@@ -40,7 +42,7 @@ export default function StateTextFields( {handleOnSubmit, form, setForm}) {
         />
         
       </div>
-      
+      <UploadButtons />
       <Button ><Box border={1} borderColor="black" onClick={handlePicBtn}>Submit</Box></Button>
       
     </form>
