@@ -10,7 +10,7 @@ import UploadButtons from "./Upload"
 import { useEffect } from "react"
 import apiClient from "../../services/apiClient"
 
-export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, freeProducts, setFreeProducts}) {
+export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, points, setPoints}) {
  
     console.log(recycleNumber)
 
@@ -63,10 +63,10 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                 </div>
                
                 <div className="user-info">
-                        <h2 className="text">{user.username}</h2>
-                        <h2 className="text">{user.age}</h2>
-                       <h2 className="text">{user.zip_code}</h2>  
-                       <h2 className="text"> {user.email}</h2>          
+                        <h2 className="text"><span title="username">{user.username}</span></h2>
+                        <h2 className="text"><span title="age">{user.age}</span></h2>
+                       <h2 className="text"><span title="zip code">{user.zip_code}</span></h2>  
+                       <h2 className="text"><span title="email">{user.email}</span></h2>          
                         {!user.profile_pic?(<>
                             <StyledButton className="btn" variant="outlined" onClick={handleOnClick}>Settings</StyledButton>
                             <br/><br/>
