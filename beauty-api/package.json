@@ -13,6 +13,7 @@
     "bcrypt": "^5.0.1",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
+    "dayjs": "^1.10.6",
     "dotenv": "^10.0.0",
     "express": "^5.0.0-alpha.8",
     "google-maps-react": "^2.0.6",

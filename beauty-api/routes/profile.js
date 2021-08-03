@@ -38,9 +38,20 @@ router.get("/", security.requireAuthenticatedUser, async (req, res, next)=>{
 router.get("/donations", security.requireAuthenticatedUser, async(req,res,next)=>{
     try{
         const user = res.locals.user
-        console.log(user)
+        // console.log(user)
         const donations = await Profile.fetchDonations({ user })
-        console.log(donations)
+        
+        
+        // donations.forEach(function (item,index){
+        //     var relativeTime = require('dayjs/plugin/relativeTime')
+        //     dayjs.extend(relativeTime)
+        //     dayjs().to(dayjs( (donations[index].created_at)
+            
+        //     ))
+        // })
+
+
+        // console.log(donations)
         return res.status(200).json({ donations })
     }catch(error){
         console.log(error)
