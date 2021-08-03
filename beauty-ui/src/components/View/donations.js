@@ -1,6 +1,8 @@
 
 import { Grid, Card, Container, CardMedia, CardContent, makeStyles, Typography, Button } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import moment from 'moment';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -57,6 +59,8 @@ export default function UserDonations({ donations, donateNumber }){
     const handleOnClick =  () =>{
         navigate("/profile/recycles")
     }
+    
+
 
     const classes = useStyles();
    //console.log(donations)
@@ -66,24 +70,17 @@ export default function UserDonations({ donations, donateNumber }){
                 <Grid container className="usersDonations">
                    
                     <Grid container className={classes.title} >
+                        
                         <h2 className={classes.viewDonatedTitle}>Total Donated Products: {donateNumber}</h2>
+                        <Button  className={classes.Button} onClick={handleOnClick} variant="outlined" size="small">
+                            View Recycled
+                        </Button>
                         
-                            {/* <Button className={classes.giveButton} variant="outlined" size="small">
-                                    <a href="/give">Give </a>
-                            </Button>
-                         */}
-                            <Button  className={classes.Button} onClick={handleOnClick} variant="outlined" size="small">
-                                View Recycled
-                            </Button>
-                        
-                  
                         
                     </Grid>
                     
                     <Grid container className={classes.feed}>
                         {donations.map((donation) => {
-                            // console.log(donation)
-                        // console.log(donations[donation].product_pic) 
                             return ( 
                                 <Card className={classes.root} key={donation.id} >
                                         
@@ -94,6 +91,7 @@ export default function UserDonations({ donations, donateNumber }){
                                         />
                                         
                                         <CardContent>
+                                            
                                             <Typography variant="body1" color="textSecondary" component="p">
                                                Product: {donation.product_type} 
                                             </Typography>
@@ -103,12 +101,10 @@ export default function UserDonations({ donations, donateNumber }){
                                             </Typography>
 
                                             <Typography variant="body1" color="textSecondary" component="p" className={classes.timestamp}>
-                                               Created at: {donation.created_at}
+                                               Created: { moment(donation.created_at).fromNow() }
                                             </Typography>
 
-
                                         </CardContent>
-
 
                                 </Card>
 

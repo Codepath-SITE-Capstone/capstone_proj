@@ -5,10 +5,31 @@ import { Button } from "@material-ui/core"
 import { useNavigate } from "react-router"
 import SimpleModal from "./Popup"
 import { Link } from "react-router-dom"
+import { useEffect } from "react"
+import apiClient from "../../services/apiClient"
 
 export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber}) {
-    setDonateNumber(donateNumber)
-    setRecycleNumber(recycleNumber)
+    // setDonateNumber(donateNumber)
+    // setRecycleNumber(recycleNumber)
+
+       //Rendering Number of donations and Number of Recycles
+       useEffect(() => {
+        
+        const ProfileApp = async () => {
+            const { data } = await apiClient.fetchNumberDonationsRecycled()
+
+            if (data)  {
+            setRecycleNumber(data.recycleNumber)
+           
+           setDonateNumber(data.donationNumber)
+           }
+             
+
+        }
+      ProfileApp()
+        }, [setRecycleNumber, setDonateNumber])
+
+
     console.log(user.profile_pic)
     const navigate = useNavigate()
     

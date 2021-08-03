@@ -67,6 +67,8 @@ export default function Settings({user}) {
     setUserSettings(user)
   }, [user])
 
+  const [password, setPassword] = useState({})
+
   const [userSettings, setUserSettings] = useState({
     first_name: "",
     last_name: "",
@@ -75,6 +77,13 @@ export default function Settings({user}) {
     zip_code:"",
     password: ""
   })
+
+  const updatePassword = (event) => {
+    setPassword({
+      ...password,
+      [event.target.name]: event.target.value
+    })
+  }
 
   const [hide, show] = useState(true)
   const showPasswordBox = () =>{
@@ -97,7 +106,7 @@ export default function Settings({user}) {
   }
   
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" style={{ backgroundColor: '#ffffff',height: '100vh' }} >
       <CssBaseline />
       <div className={classes.paper}>
         <h1 className="text">
@@ -187,9 +196,10 @@ export default function Settings({user}) {
           </Button>
         </form>
       </div>
-
-      <Box>
-        <div className={classes.paper}>
+      
+      {/* Update PassWord Section */}
+      {/* <Box> */}
+        {/* <div className={classes.paper}>
         <h1 className="text">
           Update Password
         </h1>
@@ -203,7 +213,17 @@ export default function Settings({user}) {
                 fullWidth
                 id="currPass"
                 label={<span className="text">Current Password</span> }
-                // value={userSettings.email}
+                value={userSettings.email}
+                onChange={handleOnChange}
+              />
+              <TextField
+                name="New Password"
+                variant="outlined"
+                required
+                fullWidth
+                id="currPass"
+                label={<span className="text">New Password</span> }
+                value={userSettings.email}
                 onChange={handleOnChange}
               />
             </Grid>
@@ -228,7 +248,8 @@ export default function Settings({user}) {
           </Button>
         </form>
       </div>
-      </Box>
+      </Box> */}
+      
       <Box mt={5}>
         <Copyright />
       </Box>
