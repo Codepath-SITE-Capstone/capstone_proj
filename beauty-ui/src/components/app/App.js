@@ -51,39 +51,40 @@ const App = ()=> {
           setInitialized(true)
         }
       }, [isAuthenticated])
-    
       
+      
+      const fetchDonations = async () => { console.log("Here!!")
+        const { data, error } = await apiClient.fetchDonations()
+        if (error) setError(error)
+        if (data?.donations) {
+          //console.log(data.donations)
+          setDonations(data.donations)
+          //console.log(data.donations[0].created_at)
+        }
+      }
       
       //Rendering all user had donated
       useEffect(() => {
-        const fetchDonations = async () => {
-          const { data, error } = await apiClient.fetchDonations()
-          if (error) setError(error)
-          if (data?.donations) {
-            //console.log(data.donations)
-            setDonations(data.donations)
-            //console.log(data.donations[0].created_at)
-          }
-        }
         
-        fetchDonations()
+        // fetchDonations()
       }, [])
 
-      
+       
+      const fetchRecycles = async () => {
+        const { data, error } = await apiClient.fetchRecycles()
+        if (error) setError(error)
+        if (data?.recycles) {
+          //console.log(data.donations)
+          setRecycles(data.recycles)
+         // console.log(data.donations[0].created_at)
+        }
+      }
       
       //Rendering all user has recycled
       useEffect(() => {
-        const fetchRecycles = async () => {
-          const { data, error } = await apiClient.fetchRecycles()
-          if (error) setError(error)
-          if (data?.recycles) {
-            //console.log(data.donations)
-            setRecycles(data.recycles)
-           // console.log(data.donations[0].created_at)
-          }
-        }
+       
         
-        fetchRecycles()
+        // fetchRecycles()
       }, [])
 
 
@@ -91,16 +92,16 @@ const App = ()=> {
     //Rendering Number of donations and Number of Recycles
       useEffect(() => {
         
-        const ProfileApp = async () => {
-            const { data } = await apiClient.fetchNumberDonationsRecycled()
-            if (data)  {
-            setRecycleNumber(data.recycleNumber)
-           setDonateNumber(data.donationNumber)
-           }
-        }
-      ProfileApp()
-        }, [])
-
+        ProfileApp()
+      }, [])
+      
+      const ProfileApp = async () => {
+          const { data } = await apiClient.fetchNumberDonationsRecycled()
+          if (data)  {
+          setRecycleNumber(data.recycleNumber)
+         setDonateNumber(data.donationNumber)
+         }
+      }
       
 
 
@@ -126,10 +127,10 @@ const App = ()=> {
 
                     <Route path="/give/giveSuccess" element={ <GiveSuccess user={user} setUser={setUser} /> }/>
                     <Route path="/give/giveUnauthorized" element={ <GiveUnauthorized /> }/>
-                    <Route path="/" element={ <Home /> }/>
+                    <Route path="/" element={ <Home user={user} setUser={setUser} isAuthenticated={isAuthenticated} /> }/>
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
-                    <Route path="/profile" element={ <Profile user={user} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} freeProducts={freeProducts} setFreeProducts={setFreeProducts}/>}/>
+                    <Route path="/profile" element={ <Profile user={user} fetchDonations={fetchDonations} fetchRecycles={fetchRecycles} ProfileApp={ProfileApp} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} freeProducts={freeProducts} setFreeProducts={setFreeProducts}/>}/>
                     <Route path="/profile/donations" element={ <UserDonations 
                                                                 user={user} 
                                                                 setUser={setUser}

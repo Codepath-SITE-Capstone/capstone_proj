@@ -122,7 +122,7 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
       "Cleanser":'https://images.unsplash.com/photo-1556228720-195a672e8a03?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y2xlYW5zZXJzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
       "Powder": 'https://images.unsplash.com/photo-1503236823255-94609f598e71?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZXllc2hhZG93fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
       "Mascara":'https://images.unsplash.com/photo-1560725613-4b52e67fc67b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80',
-      "Liquid Foundations": 'https://images.unsplash.com/photo-1607602132700-068258431c6c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=282&q=80',
+      "Foundation": 'https://images.unsplash.com/photo-1607602132700-068258431c6c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=282&q=80',
       "Perfume": 'https://images.unsplash.com/photo-1622618991746-fe6004db3a47?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fHBlcmZ1bWV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
     }
 
@@ -235,12 +235,12 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
                               >
                               <ListSubheader>SkinCare</ListSubheader>
                                 <MenuItem value={"Serum"}>Serums</MenuItem>
-                                <MenuItem value={"Moisturizer"}>Moisturizers</MenuItem>
+                                <MenuItem value={"Moisturizer"}>Moisturizers/Sun</MenuItem>
                                 <MenuItem value={"Cleanser"}>Cleanser</MenuItem>
                               <ListSubheader>MakeUp</ListSubheader>
                                 <MenuItem value={"Powder"}>Powders</MenuItem>
                                 <MenuItem value={"Mascara"}>Mascaras</MenuItem>
-                                <MenuItem value={"Liquid Foundations"}>Liquid Foundations</MenuItem>
+                                <MenuItem value={"Foundation"}>Liquid Foundations</MenuItem>
                                 <MenuItem value={"Perfume"}>Perfumes</MenuItem>
                             </Select>
                           </FormControl>

@@ -8,26 +8,38 @@ import { Link } from "react-router-dom"
 import { useEffect } from "react"
 import apiClient from "../../services/apiClient"
 
-export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber}) {
+export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, fetchDonations, fetchRecycles, ProfileApp}) {
     // setDonateNumber(donateNumber)
     // setRecycleNumber(recycleNumber)
 
        //Rendering Number of donations and Number of Recycles
-       useEffect(() => {
+      
+    //    useEffect(() => {
         
-        const ProfileApp = async () => {
-            const { data } = await apiClient.fetchNumberDonationsRecycled()
+    //     const ProfileApp = async () => {
+    //         const { data } = await apiClient.fetchNumberDonationsRecycled()
 
-            if (data)  {
-            setRecycleNumber(data.recycleNumber)
+    //         if (data)  {
+    //         setRecycleNumber(data.recycleNumber)
            
-           setDonateNumber(data.donationNumber)
-           }
+    //        setDonateNumber(data.donationNumber)
+    //        }
              
 
-        }
-      ProfileApp()
-        }, [setRecycleNumber, setDonateNumber])
+    //     }
+    //   ProfileApp()
+    //     }, [setRecycleNumber, setDonateNumber])
+
+    useEffect(() => {
+
+        // setDonateNumber()
+        // setRecycleNumber()
+        ProfileApp()
+        fetchDonations()
+        fetchRecycles()
+
+        
+    }, [])
 
 
     console.log(user.profile_pic)
@@ -99,7 +111,7 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                 </div>
                 <div className="recycled">
                 <div className="free-products">
-                    <h2><Link to="/points"> Free Products: {Math.round((donateNumber + recycleNumber)/20)} </Link></h2>
+                    <h2><Link to="/points"> Free Products: { Math.floor((donateNumber + recycleNumber) /20) } </Link></h2>
                 </div>
                     <Box border={1} borderColor="#2EC4B6" padding="10%">
                     <h2 className="number">{recycleNumber}</h2>
