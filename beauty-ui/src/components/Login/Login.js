@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { FormControl } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -90,21 +91,21 @@ export default function Login() {
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel onClick={showPasswordBox} id="text"
-                control={<Checkbox value="showPassword" color="primary"/>}
+              <FormControlLabel  id="text"
+                control={<Checkbox value="showPassword" color="primary" onClick={showPasswordBox} />}
                 label={<span className="text">Show Password</span> }
               />
             </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            color="primary"
-            variant="contained"
-            className={classes.submit}
-            onClick={handleOnSubmit}
-            disabled={isProcessing}
-          >
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              color="primary"
+              variant="contained"
+              className={classes.submit}
+              onClick={handleOnSubmit}
+              disabled={isProcessing}
+            >
              <div component="h1" variant="button" className="text">
             Login
             </div>

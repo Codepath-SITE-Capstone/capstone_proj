@@ -1,5 +1,6 @@
 import { Grid, Card, Container, CardMedia, CardContent, makeStyles, Typography, Button } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
      paddingBottom: '5%',
      alignItems:'center',
      justifyContent:'space-between',
+    },
+
+    viewRecycledTitle:{
+        padding:"0",
     },
 
     Button:{
@@ -59,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
                 <Grid container className="usersRecycles">
                    
                     <Grid container className={classes.title} >
-                        <h2>Total Recycled Products: {recycleNumber}</h2>
+                        <h2 className={classes.viewRecycledTitle}>Total Recycled Products: {recycleNumber}</h2>
                         <Button className={classes.Button} onClick={handleOnClick} variant="outlined" size="small">
                             View Donated
                         </Button>
@@ -68,8 +73,6 @@ const useStyles = makeStyles((theme) => ({
                     
                     <Grid container className={classes.feed}>
                         {recycles.map((recycle) => {
-                            // console.log(donation)
-                        // console.log(donations[donation].product_pic) 
                             return ( 
                                 <Card className={classes.root} key={recycle.id} >
                                         
@@ -89,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
                                             </Typography>
 
                                             <Typography variant="body1" color="textSecondary" component="p" className={classes.timestamp}>
-                                               Created at: {recycle.created_at}
+                                               Created: { moment(recycle.created_at).fromNow() }
                                             </Typography>
 
 

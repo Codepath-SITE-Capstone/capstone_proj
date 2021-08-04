@@ -1,31 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@500&display=swap');
-
+h1{
+    padding-top:2%;
+}
 .text{
     font-family : 'Arima Madurai', cursive ;
-    display: inline-grid;
+ 
 }
 .points {
+ 
     font-family : 'Arima Madurai', cursive ;
+    
+}
+.pie{
+    padding-bottom:2%;
 }
 .graph{
-    grid-column: 1;
-    grid-row: 1;
     padding:2%;
     width: fit-content;
     height: fit-content;
+ 
 }
 .free{
-    grid-column: 2;
-    grid-row: 1;
+   
     padding:2%;
     width: fit-content;
     height:max-content;
 }
 .body{
     padding: 5%;
-}
-.MuiButton-root{
-
 }
 .MuiButton-label{
     font-family: 'Arima Madurai', cursive ;

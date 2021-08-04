@@ -8,11 +8,11 @@ export const AuthContextProvider = ({ children })=>{
     const [donations, setDonations] = useState([])
     const [recycles, setRecycles] = useState([])
     const [error, setError] = useState(null)
-
     const [donateNumber, setDonateNumber] = useState(0)
     const [recycleNumber, setRecycleNumber]= useState(0)
     const [picture, setPicture] = useState(null)
-    const authValue = { user, setUser, initialized, setInitialized, donations, setDonations, recycles, setRecycles, error, setError, donateNumber, setDonateNumber, recycleNumber, setRecycleNumber, picture, setPicture }
+    const [freeProducts, setFreeProducts] = useState(0)
+    const authValue = { user, setUser, initialized, setInitialized, donations, setDonations, recycles, setRecycles, error, setError, donateNumber, setDonateNumber, recycleNumber, setRecycleNumber, picture, setPicture, freeProducts, setFreeProducts }
 
 
     return (

@@ -154,8 +154,8 @@ export default function Register() {
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel onClick={showPasswordBox}
-                control={<Checkbox value="showPassword" color="primary" />}
+              <FormControlLabel 
+                control={<Checkbox value="showPassword" color="primary" onClick={showPasswordBox} />}
                 label={<span className="text">Show Password</span> }
               />
             </Grid>
