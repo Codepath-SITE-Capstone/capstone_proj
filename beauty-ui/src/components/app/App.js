@@ -7,6 +7,7 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import GiveSuccess from "../give/giveSuccess";
 import GiveUnauthorized from "../give/giveUnauthorized";
+import Confirmation from "../give/Confirmation";
 import Tips from "../Tips/tips";
 import { AuthContextProvider, useAuthContext } from "../../Contexts/auth";
 import apiClient from "../../services/apiClient";
@@ -127,7 +128,10 @@ const App = ()=> {
 
                     <Route path="/give/giveSuccess" element={ <GiveSuccess user={user} setUser={setUser} /> }/>
                     <Route path="/give/giveUnauthorized" element={ <GiveUnauthorized /> }/>
+                    <Route path="/give/Confirmation" element={ <Confirmation /> }/>
+
                     <Route path="/" element={ <Home user={user} setUser={setUser} isAuthenticated={isAuthenticated} /> }/>
+
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
                     <Route path="/profile" element={ <Profile user={user} fetchDonations={fetchDonations} fetchRecycles={fetchRecycles} ProfileApp={ProfileApp} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} freeProducts={freeProducts} setFreeProducts={setFreeProducts}/>}/>
