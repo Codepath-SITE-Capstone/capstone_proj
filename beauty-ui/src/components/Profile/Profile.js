@@ -79,10 +79,11 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                 </div>
                
                 <div className="user-info">
-                        <h2 className="text"><span title="username">{user.username}</span></h2>
-                        <h2 className="text"><span title="age">{user.age}</span></h2>
-                       <h2 className="text"><span title="zip code">{user.zip_code}</span></h2>  
-                       <h2 className="text"><span title="email">{user.email}</span></h2>          
+                <h2 className="text"><span title="username">Username: <br/>{user.username}</span></h2>
+                        <h2 className="text"><span title="age">Age: <br/> {user.age}</span></h2>
+                       <h2 className="text"><span title="zip code">Zip Code:<br/> {user.zip_code}</span></h2>  
+                       <h2 className="text"><span title="email">Email: {user.email}</span></h2>
+        
                         {!user.profile_pic?(<>
                             <StyledButton className="btn" variant="outlined" onClick={handleOnClick}>Settings</StyledButton>
                             <br/><br/>
