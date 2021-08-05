@@ -10,10 +10,17 @@ class Giving{
         const requiredFields = ["product_type","quantity", "is_used"]
         requiredFields.forEach((field) => {
             if (!newGiving?.hasOwnProperty(field)) {
-              throw new BadRequestError(`Missing required field - ${field} - in request body.`)
+              throw new BadRequestError(`You forgot enter to enter the  - ${field} .`)
             }
           })
-          console.log(user)
+         
+          if(newGiving.product_type===""){
+            throw new BadRequestError("Please select a valid product type")
+          }
+
+          if(newGiving.quantity===0){
+            throw new BadRequestError("You must select the mininum of one for quantity")
+          }
 
           const results= await db.query(
             // Obehi: 

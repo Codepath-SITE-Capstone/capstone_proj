@@ -64,6 +64,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 
+  qtySection:{
+    maxWidth:160,
+  },
+
 formControl: {
      
     '& .MuiFormControl-root':{
@@ -112,7 +116,7 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
        { product_type:"", quantity:"", is_used:"" , id: uuidv4()}, 
     ])
 
-    console.log(form)
+    // console.log(form)
 
    
     //Obehi: Handles Default Pic rendering dependending on the product chosen to give
@@ -228,14 +232,15 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
                        
                           {/* Product Type Input Box */}
                           <FormControl className={classes.productType} variant="outlined">
-                            <InputLabel htmlFor="demo-simple-select-outlined-label">Product</InputLabel>
+                            <InputLabel htmlFor="demo-simple-select-outlined-label">*Product</InputLabel>
                             <Select defaultValue="" 
                               labelId="demo-simple-select-outlined-label" 
-                              label="product"
+                              label="*product"
                               id="grouped-select-outlined" 
                               value={form.product_type} 
                               name="product_type" 
                               onChange={event=> handleChange(index, event)}
+                              required
                               >
                               <ListSubheader>SkinCare</ListSubheader>
                                 <MenuItem value={"Serum"}>Serums</MenuItem>
@@ -250,28 +255,31 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
                           </FormControl>
       
                           {/* Quantity Input Box */}
-                          <TextField
-                              className="inputSection"
-                              variant="outlined"
-                              margin="normal"
-                              required
-                              fullWidth
-                              name="quantity"
-                              label="Quantity (min:1)"
-                              type="number"
-                              min="1"
-                              max="100000000"
-                              InputProps={{ inputProps: { min: 1, max: 100000000 } }}
-                              InputLabelProps={{ shrink: true, }}
-                              id="quantity"
-                              autoComplete="current-quantity"
-                              value={form.quantity}
-                              onChange={event=> handleChange(index, event)}
-                          />
+                          
+                            <TextField
+                                className={classes.qtySection}
+                                variant="outlined"
+                                margin="normal"
+                              
+                                fullWidth
+                                name="quantity"
+                                label="*Quantity"
+                                type="number"
+                                min="1"
+                                max="100000000"
+                                InputProps={{ inputProps: { min: 1, max: 100000000 } }}
+                                // InputLabelProps={{ shrink: true, }}
+                                id="quantity"
+                                autoComplete="current-quantity"
+                                value={form.quantity}
+                                onChange={event=> handleChange(index, event)}
+                            />
+                      
+                          
 
                          {/* Obehi: Use Condition Input Box */}
                           <FormControl variant="outlined" className={classes.formControl}>
-                            <InputLabel id="demo-simple-select-outlined-label">Used?</InputLabel>
+                            <InputLabel id="demo-simple-select-outlined-label">*Used?</InputLabel>
                             <Select
                               labelId="demo-simple-select-outlined-label"
                               id="demo-simple-select-outlined"

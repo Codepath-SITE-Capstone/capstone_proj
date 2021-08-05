@@ -84,6 +84,7 @@ class Profile{
                             created_at
                        FROM give 
                        WHERE user_id =(SELECT id FROM users WHERE username = $1) AND is_used = true
+                       ORDER BY created_at DESC
                        `
         const results = await db.query(query, [user.username])
         const recycles = results.rows

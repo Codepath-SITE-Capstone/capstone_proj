@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     button:{
         background:"#ffffff",
         // paddingLeft:'34%',
-        // paddingBottom: '34%',
+        marginBottom: '30px',
         fontFamily:'Arima Madurai',
         
     },

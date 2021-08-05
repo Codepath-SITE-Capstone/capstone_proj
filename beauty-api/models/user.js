@@ -48,17 +48,51 @@ class User{
         //if fields missing throw an error
         const requiredFields = ["email","username","zip_code","first_name","last_name", "age", "password"]
         requiredFields.forEach(field =>{
+            
             if(!credentials.hasOwnProperty(field)){
                 throw new BadRequestError(`Missing ${field} in request body`)
             }
         })
+        //Make sure email is entered in 
         if (credentials.email.indexOf("@") <=0){
-            throw new BadRequestError("Invalid email")
+            throw new BadRequestError("Please enter a valid email")
         }
+
+        
+        //Make sure username is not an empty string
+        if(credentials.username===""){
+            throw new BadRequestError("Please enter a valid username")
+        }
+        if(credentials.first_name===""){
+            throw new BadRequestError("Please enter your first name")
+        }
+
+        if(credentials.last_name===""){
+            throw new BadRequestError("Please enter your last name")
+        }
+        
+        if(credentials.age===0){
+            throw new BadRequestError("Please enter your corect age")
+        }else if (credentials.age==="") {
+            throw new BadRequestError("Please enter a number for your age")
+        } 
+            
+       if(credentials.zip_code===""){
+           throw new BadRequestError("Please enter a valid zip code")
+       }
+       if(credentials.password===""){
+           throw new BadRequestError("Please enter a valid password")
+       }
+
+
         // make sure unique email
         const existingUser = await User.fetchUserByEmail(credentials.email)
         if(existingUser){
-            throw new BadRequestError(`Duplicate email: ${credentials.email}`)
+            throw new BadRequestError(`The email "${credentials.email}" has already been registered. Please log in or enter a new email`)
+        }
+        const existingUsername = await User.fetchUserByUsername(credentials.username)
+        if(existingUsername){
+            throw new BadRequestError(`The username "${credentials.username}" is already been taken try another one`)
         }
         //take users password and hash it
         //take users email and lowercase it
