@@ -30,7 +30,7 @@ export default function AppContainer(){
 const App = ()=> {
 
     const {user, setUser, initialized, setInitialized, donations, setDonations, recycles, setRecycles, error, setError, 
-      donateNumber, setDonateNumber, recycleNumber, setRecycleNumber, freeProducts, setFreeProducts} = useAuthContext()
+      donateNumber, setDonateNumber, recycleNumber, setRecycleNumber, points, setPoints} = useAuthContext()
 
     
     //itinnialed by default is false i changed user?.email(true if email is found false if not) to !user?.email(fa)
@@ -124,7 +124,7 @@ const App = ()=> {
                 <Routes>
                     <Route path = "/tips" element={ <Tips /> }/>
 
-                    <Route path="/give" element={ <Give user={user} setUser={setUser} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} setDonations={setDonations} setRecycles={setRecycles} initialized={initialized} setFreeProducts={setFreeProducts}/> }/>
+                    <Route path="/give" element={ <Give user={user} setUser={setUser} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} setDonations={setDonations} setRecycles={setRecycles} initialized={initialized} setPoints={setPoints} points={points}/> }/>
 
                     <Route path="/give/giveSuccess" element={ <GiveSuccess user={user} setUser={setUser} /> }/>
                     <Route path="/give/giveUnauthorized" element={ <GiveUnauthorized /> }/>
@@ -134,7 +134,7 @@ const App = ()=> {
 
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
-                    <Route path="/profile" element={ <Profile user={user} fetchDonations={fetchDonations} fetchRecycles={fetchRecycles} ProfileApp={ProfileApp} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} freeProducts={freeProducts} setFreeProducts={setFreeProducts}/>}/>
+                    <Route path="/profile" element={ <Profile user={user} fetchDonations={fetchDonations} fetchRecycles={fetchRecycles} ProfileApp={ProfileApp} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} />}/>
                     <Route path="/profile/donations" element={ <UserDonations 
                                                                 user={user} 
                                                                 setUser={setUser}
@@ -152,7 +152,7 @@ const App = ()=> {
                                                                                     /> } />
 
                     <Route path="/profile/settings" element={ <Settings user={user}/>}/>
-                    <Route path="/points" element={<Points donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} freeProducts={freeProducts} setFreeProducts={setFreeProducts}/>}/>
+                    <Route path="/points" element={<Points donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} points={points} setPoints={setPoints}/>}/>
 
                 </Routes>
             </BrowserRouter>

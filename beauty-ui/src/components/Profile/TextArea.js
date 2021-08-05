@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Box } from '@material-ui/core';
+import { Button, Box, withStyles } from '@material-ui/core';
 import apiClient from '../../services/apiClient';
 import UploadButtons from './Upload';
 
@@ -27,7 +27,12 @@ export default function StateTextFields( {handleOnSubmit, form, setForm}) {
     })
     window.location.reload(false)
   }
-   
+  const StyledButton = withStyles({
+    root:{
+        borderRadius:1,
+        border: '1px solid black',
+    },
+})(Button);
   
   return (
     <form className={classes.root} noValidate autoComplete="off">
@@ -43,7 +48,7 @@ export default function StateTextFields( {handleOnSubmit, form, setForm}) {
         
       </div>
       <UploadButtons />
-      <Button ><Box border={1} borderColor="black" onClick={handlePicBtn}>Submit</Box></Button>
+      <StyledButton onClick={handlePicBtn}>Submit</StyledButton>
       
     </form>
   )

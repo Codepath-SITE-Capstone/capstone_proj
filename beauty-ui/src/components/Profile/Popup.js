@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import StateTextFields from './TextArea';
 import { useModalForm } from '../../hooks/useModalForm'; 
-import { Button, Box } from '@material-ui/core';
+import { Button, Box, withStyles } from '@material-ui/core';
 import "./Profile.css"
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -32,6 +32,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimpleModal() {
+  const StyledButton = withStyles({
+    root:{
+        borderRadius:1,
+        border: '1px solid black',
+    },
+})(Button);
   const classes = useStyles();
   const {handleOnChange, handleOnSubmit, errors, isProcessing, form, setForm} = useModalForm()
   // getModalStyle is not a pure function, we roll the style only on the first render
@@ -55,9 +61,9 @@ export default function SimpleModal() {
 
   return (
     <div>
-      <Button type="button" onClick={handleOpen}>
-      <Box className="text" border={1}>  Add Profile Picture</Box>
-      </Button>
+      <StyledButton type="button" onClick={handleOpen}>
+        Add Profile Picture
+      </StyledButton>
       <Modal
         open={open}
         onClose={handleClose}

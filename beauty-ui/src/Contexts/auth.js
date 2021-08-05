@@ -11,8 +11,8 @@ export const AuthContextProvider = ({ children })=>{
     const [donateNumber, setDonateNumber] = useState(0)
     const [recycleNumber, setRecycleNumber]= useState(0)
     const [picture, setPicture] = useState(null)
-    const [freeProducts, setFreeProducts] = useState(0)
-    const authValue = { user, setUser, initialized, setInitialized, donations, setDonations, recycles, setRecycles, error, setError, donateNumber, setDonateNumber, recycleNumber, setRecycleNumber, picture, setPicture, freeProducts, setFreeProducts }
+    const [points, setPoints] = useState([])
+    const authValue = { user, setUser, initialized, setInitialized, donations, setDonations, recycles, setRecycles, error, setError, donateNumber, setDonateNumber, recycleNumber, setRecycleNumber, picture, setPicture, points, setPoints }
 
 
     return (
