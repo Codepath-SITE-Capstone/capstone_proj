@@ -1,6 +1,6 @@
 import "./Points.css"
 import { Box, Button, withStyles, Grid } from "@material-ui/core"
-import { black } from "colors"
+// import { black } from "colors"
 import { PieChart } from 'react-minimal-pie-chart'
 
 export default function Points({donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, points, setPoints}) {

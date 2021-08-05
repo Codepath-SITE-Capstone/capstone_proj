@@ -148,7 +148,7 @@ subtitle: {
     fontWeight: "heavy",
     fontSize: 20,
     textAlign: "center",
-    letterSpacing: "-0.015em",
+    // letterSpacing: "-0.015em",
     color: "#000000",
 
 },
@@ -165,7 +165,7 @@ registerBTN: {
     textAlign: "center",
     letterSpacing: "-0.015em",
     background: "#cbf3f0",
-    color: "#FFFFFF",
+    // color: "#FFFFFF",
 
 },
 bottom: {
@@ -242,18 +242,10 @@ const reload= ()=>
   }
 }
 
-export default function Home(props) {
-   //reload()
-   window.onload = function() {
-    if(!window.location.hash) {
-        window.location = window.location + '#loaded';
-        window.location.reload();
-    }
-}
-window.onload()
+export default function Home({ user, isAuthenticated }) {
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles(); //classes invokes useStyles hook
-  const { hero } = props;
+//   const { hero } = props;
 
 
   const handleChange = (event) => {
@@ -268,17 +260,29 @@ window.onload()
         {/* <CardMedia className={classes.wrapper} /> */}
         <CardContent className={classes.overlay}>
             <Typography variant="h1" className={classes.title}>
-                    Making Beauty Sustainable
+                    "Making Beauty Sustainable"
             </Typography>
             
             <Typography variant="body1" className={classes.subtitle}>
-                    Donate or Recycle Your Makeup Products, learn More About SustainabilityThe beauty industry creates 120 billion units of packaging every year. In 2015, research found that packaging accounted for 146 million tonnes of plastic every year.
+                   The beauty industry creates 120 billion units of packaging every year. 
+                   {/* In 2015, research found that packaging accounted for 146 million tonnes of plastic every year. */}
+                   Our goal is to make beauty more sustainable by giving people the opportunity to donate or recycle their beauty products.
+                   Also, please visit our 'tips' page, to become even more aware of sustainability on your next beauty purchase.
             </Typography>
-        
-            <Button variant="outlined" color="default" size='medium' className={classes.registerBTN}>
-                <a href="/register"> Register </a>
-            </Button>
-              
+            
+            { !isAuthenticated? (
+                 <div></div>
+            
+            ) : (
+                
+                <a href="/register"> 
+                 <Button variant="outlined" color="default" size='medium' className={classes.registerBTN}>
+                      Register
+                 </Button>
+                 </a>
+            )
+           
+            }  
         </CardContent>
         
     </Box>

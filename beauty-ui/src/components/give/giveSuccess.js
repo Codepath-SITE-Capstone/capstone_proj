@@ -2,26 +2,60 @@ import './giveSuccess.css';
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import { Typography, Grid } from '@material-ui/core';
+// import { useNavigate } from "react-router";
+
+import { Link } from 'react-router-dom'
+
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
 import Geocode from "react-geocode";
+
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
+const OutlinedButtons = ()  => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+      <Button variant="outlined" color="primary" href="#outlined-buttons">
+        Link
+      </Button>
+    </div>
+  );
+}
+
+function SelectCenter() {
+  // const navigate = useNavigate()
+  // var center = {center}.name
+  // navigate("/give/Confirmation")
+
+  <Link to ="/give/Confirmation"> </Link>
+}
+
 const mapStyles = {
-  width: '50%',
-  height: "40%",
+  width: "40%",
+  height: "30%",
 };
+
 const centers = [
-  { position: { lat: 37.7749, lng: -122.4194}, name: 'Hīrā Drop Off Center (1765 California St, San Francisco, CA 94109)', distance: 4 },
-  { position: { lat: 37.7993, lng:  -122.3977}, name: 'Hīrā Drop Off Center (1098 The Embarcadero, San Francisco, CA 94111)', distance: 5},
-  { position: { lat: 37.8715, lng: -122.2730}, name: 'Hīrā Drop Off Center (2495 Bancroft Way, Berkeley, CA 94704)', distance: 3 },
-  { position: { lat: 37.7640954, lng: -122.2419132}, name: 'Hīrā Drop Off Center (2201 Shore Line Dr, Alameda, CA 94501)', distance: 2 },
-  { position: { lat: 37.8128, lng: -122.2610}, name: 'Hīrā Drop Off Center (230 Bay Pl, Oakland, CA 94612)', distance: 1},
+  { position: { lat: 37.7749, lng: -122.4194}, name: <Typography>Hīrā Drop Off Center (1765 California St, San Francisco, CA 94109)</Typography>, distance: 4},
+  { position: { lat: 37.7993, lng:  -122.3977}, name: <Typography>Hīrā Drop Off Center (1098 The Embarcadero, San Francisco, CA 94111)</Typography>, distance: 5},
+  { position: { lat: 37.8715, lng: -122.2730}, name: <Typography>Hīrā Drop Off Center (2495 Bancroft Way, Berkeley, CA 94704)</Typography>, distance: 3},
+  { position: { lat: 37.7640954, lng: -122.2419132}, name: <Typography>Hīrā Drop Off Center (2201 Shore Line Dr, Alameda, CA 94501)</Typography>, distance: 2},
+  { position: { lat: 37.8128, lng: -122.2610}, name: <Typography>Hīrā Drop Off Center (230 Bay Pl, Oakland, CA 94612)</Typography>, distance: 1},
 ];
-// //function that returns the nearest marker to current location 
-// function nearestCenter(centers, location) {
-//   for i in centers {
-//   }
-// }
-// // }
-// // export default function GiveSuccess(){
+
 export class MapContainer extends Component {
+  
   state = {
     showingInfoWindow: false,  // Hides or shows the InfoWindow
     activeMarker: {},          // Shows the active marker upon click
@@ -57,9 +91,13 @@ export class MapContainer extends Component {
       }
     );
   }
+  
   render() {
     Geocode.setApiKey("AIzaSyAYlQ6lsXJey1Uaca8vUVExDcHP4TLGgis");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    
     return (
+      
     <div>
       <h1 className="title">
         Thank you for your donation!
@@ -71,7 +109,6 @@ export class MapContainer extends Component {
       <Map
         google={this.props.google}
         zoom={11}
-        // center={ { lat: this.state.userPosition.latitude, lng: this.state.userPosition.longitude } }
         center={ { lat: 37.8226, lng:  -122.3706 } } 
         style={mapStyles}
       >
@@ -104,12 +141,13 @@ export class MapContainer extends Component {
         <h2 className="select">
           Please select a drop off location
         </h2>
+
         {centers.sort((a,b) => {if(a.distance < b.distance){return -1}else{return 1}}).map(center => (
-          <Grid container key={center.name}>
+          <Grid className="addy" container key={center.name}>
             <Grid item xs={12}>
-              <Typography variant="h6">{center.name}</Typography>
-              <Typography variant="h6">{center.position.lng}</Typography>
-              <Typography variant="h6">{center.distance}</Typography>
+              <Link to ="/give/Confirmation">
+              <Button variant="outlined" color="primary">{center.name}, {center.distance}</Button>
+              </Link>
             </Grid>
           </Grid>
           )

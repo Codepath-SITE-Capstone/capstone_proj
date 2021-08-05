@@ -5,25 +5,44 @@ import { Button,withStyles } from "@material-ui/core"
 import { useNavigate } from "react-router"
 import SimpleModal from "./Popup"
 import { Link } from "react-router-dom"
-import { black } from "colors"
-import UploadButtons from "./Upload"
 import { useEffect } from "react"
 import apiClient from "../../services/apiClient"
 
-export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, points, setPoints}) {
+export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, fetchDonations, fetchRecycles, ProfileApp}) {
+    // setDonateNumber(donateNumber)
+    // setRecycleNumber(recycleNumber)
+
+       //Rendering Number of donations and Number of Recycles
+      
+    //    useEffect(() => {
+        
+    //     const ProfileApp = async () => {
+    //         const { data } = await apiClient.fetchNumberDonationsRecycled()
+
+    //         if (data)  {
+    //         setRecycleNumber(data.recycleNumber)
+           
+    //        setDonateNumber(data.donationNumber)
+    //        }
+             
+
+    //     }
+    //   ProfileApp()
+    //     }, [setRecycleNumber, setDonateNumber])
 
     useEffect(() => {
-        
-        const ProfileApp = async () => {
-            const { data } = await apiClient.fetchNumberDonationsRecycled()
-            if (data)  {
-            setRecycleNumber(data.recycleNumber)
-           setDonateNumber(data.donationNumber)
-           }
-        }
-      ProfileApp()
-        }, [])
 
+        // setDonateNumber()
+        // setRecycleNumber()
+        ProfileApp()
+        fetchDonations()
+        fetchRecycles()
+
+        
+    }, [])
+
+
+    console.log(user.profile_pic)
     const navigate = useNavigate()
    
     const StyledButton = withStyles({
@@ -59,10 +78,11 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                 </div>
                
                 <div className="user-info">
-                        <h2 className="text"><span title="username">{user.username}</span></h2>
-                        <h2 className="text"><span title="age">{user.age}</span></h2>
-                       <h2 className="text"><span title="zip code">{user.zip_code}</span></h2>  
-                       <h2 className="text"><span title="email">{user.email}</span></h2>          
+                <h2 className="text"><span title="username">Username: <br/>{user.username}</span></h2>
+                        <h2 className="text"><span title="age">Age: <br/> {user.age}</span></h2>
+                       <h2 className="text"><span title="zip code">Zip Code:<br/> {user.zip_code}</span></h2>  
+                       <h2 className="text"><span title="email">Email: {user.email}</span></h2>
+        
                         {!user.profile_pic?(<>
                             <StyledButton className="btn" variant="outlined" onClick={handleOnClick}>Settings</StyledButton>
                             <br/><br/>
@@ -91,7 +111,7 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                 </div>
                 <div className="recycled">
                 <div className="free-products">
-                    <h2><Link to="/points"> Free Products: {Math.round((donateNumber + recycleNumber)/20)} </Link></h2>
+                    <h2><Link to="/points"> Free Products: { Math.floor((donateNumber + recycleNumber) /20) } </Link></h2>
                 </div>
                     <Box border={1} borderColor="#2EC4B6" padding="10%">
                     <h2 className="number">{recycleNumber}</h2>
