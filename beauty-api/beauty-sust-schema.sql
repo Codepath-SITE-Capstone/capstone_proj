@@ -23,7 +23,8 @@ CREATE TABLE give (
   is_used    BOOLEAN NOT NULL DEFAULT FALSE,
   -- zip_code   INTEGER NOT NULL,
   product_pic TEXT,
-  created_at  TIMESTAMP NOT NULL DEFAULT NOW()
+  created_at  TIMESTAMP NOT NULL DEFAULT NOW(),
+  points_quantity INTEGER
 );
 
 --Obehi: Represent the example products we obtain as a recycle or a donation. On Home page it is split into two 

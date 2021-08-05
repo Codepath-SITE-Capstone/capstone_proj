@@ -228,19 +228,7 @@ productSubtitle: {
 
 
 }));
-const reload= ()=>
-{
-  if( window.localStorage )
-  {
-    if( !localStorage.getItem('firstLoad') )
-    {
-      localStorage['firstLoad'] = true;
-      window.location.reload();
-    }  
-    else
-      localStorage.removeItem('firstLoad');
-  }
-}
+
 
 export default function Home({ user, isAuthenticated }) {
   const [spacing, setSpacing] = React.useState(2);

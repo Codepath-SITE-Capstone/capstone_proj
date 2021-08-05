@@ -10,7 +10,6 @@ export default function Navbar({ user, logoutUser, isAuthenticated, intialized }
     const navigate=useNavigate()
     const handleLogin =()=>{
         navigate("/login")
-       //window.location.reload()
         
     }
 

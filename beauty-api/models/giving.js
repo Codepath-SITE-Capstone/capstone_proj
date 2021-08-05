@@ -21,23 +21,29 @@ class Giving{
             // is gonna put down, but i know it's gonna be something cause its required
            
             `
-            INSERT INTO give(product_type, quantity, is_used, product_pic, user_id)
-            VALUES($1, $2, $3, $4, (SELECT id FROM users WHERE username = $5) )
+            INSERT INTO give(product_type, quantity, is_used, product_pic, user_id, points_quantity)
+            VALUES($1, $2, $3, $4, (SELECT id FROM users WHERE username = $5), $6 )
             RETURNING id,
                       created_at,
                       product_type,
                       quantity,
                       is_used,
                       product_pic,
-                      user_id;
+                      user_id,
+                      points_quantity;
             `, 
-            [newGiving.product_type, newGiving.quantity, newGiving.is_used, newGiving.product_pic, user.username]
+            [newGiving.product_type, newGiving.quantity, newGiving.is_used, newGiving.product_pic, user.username, newGiving.points_quantity]
             )
         
             return results.rows[0]
     }
 
-
+static async redeemPoints({user}){
+  const results = await db.query(
+    `UPDATE give SET points_quantity = 0 WHERE username = $1 `, [user.username]
+  )
+  return results.rows[0]
+}
 
 
 
