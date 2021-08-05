@@ -20,7 +20,7 @@ export const useLoginForm = ()=>{
 
       if (user?.email) {
         navigate("/profile")
-        window.location.reload()
+       
       }
     }, [user, navigate])
     

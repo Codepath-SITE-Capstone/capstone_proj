@@ -19,6 +19,11 @@ router.post("/",  security.requireAuthenticatedUser, async(req, res, next)=>{
         next(error)
     }
 })
+router.post("/", security.requireAuthenticatedUser, async(req, res, next)=>{
+    const user = res.locals.user
+    const redeem = await Giving.redeemPoints({user})
+    return res.status(201).json({redeem})
+})
 
 
 

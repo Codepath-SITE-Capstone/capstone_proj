@@ -4,10 +4,13 @@ h1{
 }
 .text{
     font-family : 'Arima Madurai', cursive ;
+    font-size: 20px;
  
 }
+.header{
+    font-size:25px;
+}
 .points {
- 
     font-family : 'Arima Madurai', cursive ;
     
 }
