@@ -103,6 +103,13 @@ const App = ()=> {
          setDonateNumber(data.donationNumber)
          }
       }
+      const pointsData = async () =>{
+        const {data} = await apiClient.viewPoints()
+        if (data){
+          setPoints(data.pointNumber)
+          console.log(data.pointNumber)
+        }
+      }
       
 
 
@@ -134,7 +141,7 @@ const App = ()=> {
 
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
-                    <Route path="/profile" element={ <Profile user={user} fetchDonations={fetchDonations} fetchRecycles={fetchRecycles} ProfileApp={ProfileApp} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} />}/>
+                    <Route path="/profile" element={ <Profile user={user} fetchDonations={fetchDonations} fetchRecycles={fetchRecycles} ProfileApp={ProfileApp} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} points={points} />}/>
                     <Route path="/profile/donations" element={ <UserDonations 
                                                                 user={user} 
                                                                 setUser={setUser}
@@ -152,7 +159,7 @@ const App = ()=> {
                                                                                     /> } />
 
                     <Route path="/profile/settings" element={ <Settings user={user}/>}/>
-                    <Route path="/points" element={<Points donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} points={points} setPoints={setPoints}/>}/>
+                    <Route path="/points" element={<Points donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} points={points} setPoints={setPoints} setError={setError} pointsData={pointsData}/>}/>
 
                 </Routes>
             </BrowserRouter>

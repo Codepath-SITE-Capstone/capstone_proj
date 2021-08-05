@@ -1,13 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import { TextField, Button } from '@material-ui/core';
+import {  Button, withStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
+      
     },
   },
   input: {
@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UploadButtons() {
   const classes = useStyles();
+  const StyledButton = withStyles({
+    root:{
+        borderRadius:1,
+        border: '1px solid black',
+    },
+})(Button);
 
   return (
     <div className={classes.root}>
@@ -29,9 +35,9 @@ export default function UploadButtons() {
         type="file"
       />
       <label htmlFor="contained-button-file">
-        <Button variant="contained" color="primary" component="span">
-          Upload
-        </Button>
+        <StyledButton variant="outlined" component="span">
+          Upload  <PhotoCamera/>
+        </StyledButton>
       </label>
       <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
     </div>
