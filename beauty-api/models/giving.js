@@ -39,7 +39,7 @@ class Giving{
                       user_id,
                       points_quantity;
             `, 
-            [newGiving.product_type, newGiving.quantity, newGiving.is_used, newGiving.product_pic, user.username, newGiving.points_quantity]
+            [newGiving.product_type, newGiving.quantity, newGiving.is_used, newGiving.product_pic, user.username, newGiving.quantity]
             )
         
             return results.rows[0]
@@ -47,7 +47,7 @@ class Giving{
 
 static async redeemPoints({user}){
   const results = await db.query(
-    `UPDATE give SET points_quantity = 0 WHERE username = $1 `, [user.username]
+    `UPDATE give SET points_quantity = 0 WHERE user_id= (SELECT id FROM users WHERE username = $1) `, [user.username]
   )
   return results.rows[0]
 }

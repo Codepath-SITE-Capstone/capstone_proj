@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     width: 400,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: '3px solid #2EC4B6',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -54,7 +54,7 @@ export default function SimpleModal() {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Please Enter Image Url</h2>
+      <h2 id="simple-modal-title">Please Enter Image Url or Upload an Image</h2>
       <StateTextFields handleOnSubmit={handleOnSubmit} form={form} setForm={setForm}/>
     </div>
   );
