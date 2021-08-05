@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
   }));
 
-export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, fetchDonations, fetchRecycles, ProfileApp}) {
+export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, fetchDonations, fetchRecycles, ProfileApp, points}) {
    
     useEffect(() => {
         ProfileApp()
@@ -72,7 +72,7 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                 <div className="user-info">
                    
                 <h2 className="text"> <div className="settings"> Username: <br/>{user.username}</div>
-                <div className="settings">Email: {user.email}</div>
+                <div className="settings">Email:<br/> {user.email}</div>
                 Zip Code:<br/> {user.zip_code}
                 </h2>
                         {!user.profile_pic?(<div >
@@ -95,7 +95,7 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                 <div className="products">
                 <div className="donations">
                     <div className="points">
-                  <h2 className="text"><Link to="/points">Total Products:<br/> {donateNumber + recycleNumber} </Link></h2>
+                  <h2 className="text"><Link to="/points">Points:<br/> {points} </Link></h2>
                 </div>
                     <Card className={classes.root} padding="10%">
                         <h2 className="text">{donateNumber}</h2>
@@ -107,7 +107,7 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                 </div>
                 <div className="recycled">
                 <div className="free-products">
-                    <h2 className="text"><Link to="/points"> Free Products: <br/>{ Math.floor((donateNumber + recycleNumber) /20) } </Link></h2>
+                    <h2 className="text"><Link to="/points"> Free Products: <br/>{ Math.floor((points) /20) } </Link></h2>
                 </div>
                     <Card className={classes.root} borderColor="#2EC4B6" padding="10%">
                     <h2 className="text">{recycleNumber}</h2>

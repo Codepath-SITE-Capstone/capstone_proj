@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button, Box, withStyles } from '@material-ui/core';
 import apiClient from '../../services/apiClient';
 import UploadButtons from './Upload';
+import './Textarea.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,9 +48,12 @@ export default function StateTextFields( {handleOnSubmit, form, setForm}) {
         />
         
       </div>
-      <UploadButtons />
-      <StyledButton onClick={handlePicBtn}>Submit</StyledButton>
-      
+      <div className="buttons">
+        <div className="submit">
+        <UploadButtons />
+      </div>
+      <StyledButton onClick={handlePicBtn} >Submit</StyledButton>
+      </div>
     </form>
   )
 }

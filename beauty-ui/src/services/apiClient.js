@@ -3,8 +3,8 @@ import axios from "axios"
 class ApiClient {
   constructor(remoteHostUrl) {
     this.remoteHostUrl = remoteHostUrl
-    this.token = null
     this.tokenName ="beauty_token"
+    this.token = localStorage.getItem(this.tokenName)
   }
 
   setToken(token) {
@@ -65,6 +65,12 @@ class ApiClient {
   }
   async addPic(pic) {
     return await this.request({ endpoint: `profile`, method: `POST`, data: pic })
+  }
+  async redeemPoints(){
+    return await this.request({ endpoint: `points`, method: `POST`})
+  }
+  async viewPoints(){
+    return await this.request({endpoint:`points`, method: `GET`})
   }
   
   async logoutUser() {
