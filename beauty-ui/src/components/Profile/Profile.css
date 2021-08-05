@@ -59,6 +59,9 @@
     font-family: 'Arima Madurai', cursive ;
     font-size: 15px;
 }
-.btn{
-    padding: 2%;
+.settings{
+    padding-bottom:10%;
+}
+.btns{
+    padding-bottom: 5%;
 }
