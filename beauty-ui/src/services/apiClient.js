@@ -3,8 +3,8 @@ import axios from "axios"
 class ApiClient {
   constructor(remoteHostUrl) {
     this.remoteHostUrl = remoteHostUrl
-    this.token = null
     this.tokenName ="beauty_token"
+    this.token = localStorage.getItem(this.tokenName)
   }
 
   setToken(token) {

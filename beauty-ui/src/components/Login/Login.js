@@ -61,7 +61,8 @@ export default function Login() {
           </h1>
         </div>
         {errors?.form && <span className="error">{errors.form}</span>}
-        <form className={classes.form} noValidate>
+        <form className={classes.form} >
+        {/* noValidate */}
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField className="text"
@@ -89,6 +90,7 @@ export default function Login() {
                 value={form.password}
                 onChange={handleOnChange}
               />
+              {/* {errors.password && <p>Password is invalid</p>} */}
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel  id="text"

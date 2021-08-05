@@ -15,8 +15,6 @@ export const useLoginForm = ()=>{
     const [hide, show]= useState(true)
 
     useEffect(() => {
-      // if user is already logged in,
-      // redirect them to the home page
 
       if (user?.email) {
         navigate("/profile")
