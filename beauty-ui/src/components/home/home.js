@@ -229,6 +229,7 @@ productSubtitle: {
 
 }));
 
+
 export default function Home({ user, isAuthenticated }) {
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles(); //classes invokes useStyles hook

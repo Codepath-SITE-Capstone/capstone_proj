@@ -2,12 +2,13 @@
 
 .text{
     font-family : 'Arima Madurai', cursive ;
+    font-size: 25px;
 }
 .btn{
     padding-bottom: 3%;
 }
 .profile{
-    padding-top:5%;
+    padding-top:2%;
     display: inline-grid;
 }
 .info{
@@ -39,6 +40,7 @@
 .products{
     display:inline-grid;
     padding:5%;
+   
 }
 .donations{
     grid-column: 1;
@@ -59,6 +61,9 @@
     font-family: 'Arima Madurai', cursive ;
     font-size: 15px;
 }
-.btn{
-    padding: 2%;
+.settings{
+    padding-bottom:10%;
+}
+.btns{
+    padding-bottom: 5%;
 }

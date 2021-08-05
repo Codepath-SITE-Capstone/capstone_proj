@@ -20,6 +20,7 @@ export const useLoginForm = ()=>{
 
       if (user?.email) {
         navigate("/profile")
+       
       }
     }, [user, navigate])
     
@@ -40,7 +41,7 @@ export const useLoginForm = ()=>{
 
 
     const handleOnSubmit = async (event) => {
-      event.preventDefault()
+      
       setIsProcessing(true)
       
       const { data, error } = await apiClient.loginUser({ email: form.email, password: form.password })
