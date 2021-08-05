@@ -85,12 +85,13 @@ export default function Profile({user, logoutUser, donateNumber, recycleNumber, 
                        <h2 className="text"><span title="email">Email: {user.email}</span></h2>
         
                         {!user.profile_pic?(<>
-                            <StyledButton className="btn" variant="outlined" onClick={handleOnClick}>Settings</StyledButton>
+                            {/* <StyledButton className="btn" variant="outlined" onClick={handleOnClick}>Settings</StyledButton> */}
                             <br/><br/>
                             <SimpleModal />
                             <br/><br/>
                             <StyledButton className="btn" variant="outlined" onClick={handleOnLogout}>Log Out</StyledButton></>
-                        ) :(<><StyledButton className="btn" variant="outlined" onClick={handleOnClick}>Settings</StyledButton>
+                        ) :(<>
+                        {/* <StyledButton className="btn" variant="outlined" onClick={handleOnClick}>Settings</StyledButton> */}
                         <br/><br/>
                         <StyledButton className="btn" variant="outlined" onClick={handleOnLogout}>Log Out</StyledButton></>)}
                 </div>

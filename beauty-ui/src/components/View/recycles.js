@@ -5,15 +5,14 @@ import moment from 'moment';
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'block',
-        width: '15vw',
-        height: '35vh',
+        width: '20vw',
+        height: '40vh',
         border:'2px solid',
         borderRadius: 0,
-        borderColor:'#64ffda',
+        borderColor:'#2EC4B6',
      
     },
     title: {
-    //  display:"flex",
      paddingTop: '5%',
      paddingBottom: '5%',
      alignItems:'center',
@@ -41,7 +40,10 @@ const useStyles = makeStyles((theme) => ({
     media: {
       height: '8%',
       width: '100%',
-      paddingTop: '56.25%', // 16:9
+      paddingTop: '56.25%', 
+    },
+    content:{
+     paddingBottom:'5px',
     },
     timestamp: {
         textAlign:'start',
@@ -82,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
                                         title="Recycle"
                                         />
                                         
-                                        <CardContent>
+                                        <CardContent classname={classes.content}>
                                             <Typography variant="body1" color="textSecondary" component="p">
                                                Product: {recycle.product_type} 
                                             </Typography>
