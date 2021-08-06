@@ -20,6 +20,12 @@ class Giving{
 
           if(newGiving.quantity===0){
             throw new BadRequestError("You must select the mininum of one for quantity")
+          }else if(newGiving.quantity===""){
+            throw new BadRequestError("The quantity must be a number")
+          }
+
+          if(newGiving.is_used===""){
+            throw new BadRequestError("Please select if your product is used or not")
           }
 
           const results= await db.query(
