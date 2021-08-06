@@ -105,7 +105,7 @@ error:{
 
 
 
-export default function Give({ user, setUser, setDonateNumber, setDonations, setRecycleNumber, setRecycles, initialized, setPoints,points}){
+export default function Give({ user, setUser, setDonateNumber, setDonations, setRecycleNumber, setRecycles, initialized}){
 
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)
@@ -168,8 +168,6 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
       setErrors((e) => ({ ...e, form: null }))
 
       form.forEach(async (x) =>{
-        // setPoints(point => [...point, Number(x.quantity)])
-        // console.log(points)
         const{ data, error } = await apiClient.createGiving({
 
           product_type: x.product_type,
@@ -227,6 +225,7 @@ export default function Give({ user, setUser, setDonateNumber, setDonations, set
       // setIsProcessing(false)
       // navigate("/give/giveSuccess")
     }
+  
     
  
   const classes = useStyles();
