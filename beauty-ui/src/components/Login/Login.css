@@ -3,3 +3,7 @@
 .text{
     font-family : 'Arima Madurai', cursive ;
 }
+
+.error{
+    color: red;
+}
