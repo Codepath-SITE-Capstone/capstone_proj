@@ -15,8 +15,8 @@ router.post("/",  security.requireAuthenticatedUser, async(req, res, next)=>{
         const givings = await Giving.createGiving({ newGiving:req.body, user })
         return res.status(201).json({ givings })
         
-    } catch (error) {
-        next(error)
+    } catch (err) {
+        next(err)
     }
 })
 router.post("/", security.requireAuthenticatedUser, async(req, res, next)=>{
