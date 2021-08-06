@@ -91,10 +91,7 @@ const App = ()=> {
 
 
     //Rendering Number of donations and Number of Recycles
-      useEffect(() => {
-        
-        ProfileApp()
-      }, [])
+
       
       const ProfileApp = async () => {
           const { data } = await apiClient.fetchNumberDonationsRecycled()
@@ -110,7 +107,12 @@ const App = ()=> {
           console.log(data.pointNumber)
         }
       }
-      
+
+      useEffect(() => {
+        
+        ProfileApp()
+        pointsData()
+      }, [])
 
 
         const clearAppState = () => {
@@ -141,7 +143,7 @@ const App = ()=> {
 
                     <Route path="/register" element={ <Register user={user} setUser={setUser} />}/>
                     <Route path="/login" element={ <Login user={user} setUser={setUser}/>}/>
-                    <Route path="/profile" element={ <Profile user={user} fetchDonations={fetchDonations} fetchRecycles={fetchRecycles} ProfileApp={ProfileApp} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} points={points} />}/>
+                    <Route path="/profile" element={ <Profile user={user} fetchDonations={fetchDonations} fetchRecycles={fetchRecycles} ProfileApp={ProfileApp} logoutUser={logoutUser} donateNumber={donateNumber} recycleNumber={recycleNumber} setDonateNumber={setDonateNumber} setRecycleNumber={setRecycleNumber} points={points} pointsData={pointsData}/>}/>
                     <Route path="/profile/donations" element={ <UserDonations 
                                                                 user={user} 
                                                                 setUser={setUser}

@@ -22,12 +22,13 @@ const useStyles = makeStyles((theme) => ({
 
   }));
 
-export default function Profile({user, logoutUser, donateNumber, recycleNumber, setDonateNumber, setRecycleNumber, fetchDonations, fetchRecycles, ProfileApp, points}) {
+export default function Profile({user, logoutUser, donateNumber, recycleNumber, fetchDonations, fetchRecycles, ProfileApp, points}) {
    
     useEffect(() => {
         ProfileApp()
         fetchDonations()
         fetchRecycles()
+        
 
         
     }, [])
